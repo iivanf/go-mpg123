@@ -121,10 +121,10 @@ func (h *Handle) Decode(in, out []byte) (int, error) {
 		inBufCLen = C.size_t(len(in))
 	}
 
-	var outBufC *C.uchar = nil
+	var outBufC unsafe.Pointer = nil
 	var outBufCLen C.size_t = 0
 	if len(out) > 0 {
-		outBufC = (*C.uchar)(unsafe.Pointer(&(out[0])))
+		outBufC = unsafe.Pointer(&(out[0]))
 		outBufCLen = C.size_t(len(out))
 	}
 	var outBufCDone C.size_t = 0
